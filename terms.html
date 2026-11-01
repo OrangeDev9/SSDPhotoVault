@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSD Photo Vault — Terms of Service & EULA</title>
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <style>
+    :root {
+      --bg: #07090E;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --cyan: #38BDF8;
+      --emerald: #10B981;
+      --amber: #F59E0B;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+    .container { max-width: 800px; margin: 0 auto; }
+    header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.2rem; }
+    .brand img { width: 36px; height: 36px; border-radius: 9px; }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 12px; }
+    p.lead { font-size: 1.05rem; color: var(--text-muted); margin-bottom: 32px; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .card-warning {
+      background: rgba(245, 158, 11, 0.05);
+      border-color: rgba(245, 158, 11, 0.25);
+    }
+    h2 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; color: #FFF; }
+    .card-warning h2 { color: var(--amber); }
+    p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 10px; }
+    ul { margin-left: 20px; color: var(--text-muted); font-size: 0.95rem; }
+    li { margin-bottom: 6px; }
+    .caps { font-size: 0.88rem; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.5; color: #E2E8F0; }
+    footer { text-align: center; margin-top: 60px; color: var(--text-muted); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="app-icon.png" alt="SSD Photo Vault">
+        <span>SSD Photo Vault</span>
+      </div>
+      <a href="index.html">&larr; Back to Home</a>
+    </header>
+
+    <h1>Terms of Service & EULA</h1>
+    <p class="lead">Last updated: October 30, 2026. Please read these terms carefully before using SSD Photo Vault.</p>
+
+    <div class="card">
+      <h2>1. Agreement & Acceptance</h2>
+      <p>By downloading, installing, accessing, or using SSD Photo Vault ("the Application"), you agree to be bound by these Terms of Service, our Privacy Policy, and <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">Apple’s Standard End User License Agreement (EULA)</a>. If you do not agree to these terms, do not download, install, or use the Application.</p>
+    </div>
+
+    <div class="card">
+      <h2>2. User Agency & Full Knowledge of Actions</h2>
+      <p>SSD Photo Vault is an on-device utility operated solely at your explicit direction and with your full knowledge and control. You acknowledge and agree that:</p>
+      <ul>
+        <li>All operations—including photo scanning, media selection, external drive connection, transfer execution, and space reclamation—are initiated by you.</li>
+        <li>No file transfers, deletions, or library modifications occur automatically or in the background without your explicit action.</li>
+        <li>You maintain full visibility and decision-making over all connected storage devices and destination directory paths.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>3. Non-Destructive Operation & Space Reclamation</h2>
+      <p>The Application requests read-only authorization to your Apple Photos library to read original photo and video assets. SSD Photo Vault does not modify, compress, or overwrite original media in your device's photo library.</p>
+      <p>Any optional space reclamation feature is user-invoked and requires standard iOS system confirmation dialogs. You are solely responsible for verifying that your files have been successfully copied and confirmed on your external storage before authorizing any deletion of original photos from your device.</p>
+    </div>
+
+    <div class="card">
+      <h2>4. External Hardware & User Responsibility</h2>
+      <p>SSD Photo Vault interacts with external physical storage media connected via USB-C or Lightning adapters. Users acknowledge that:</p>
+      <ul>
+        <li>External storage hardware (SSDs, hard disk drives, flash drives, cables, hubs, and power adapters) are physical consumer products subject to independent wear, file system degradation, manufacturing defects, and electrical faults beyond the control of the Application.</li>
+        <li>You are solely responsible for ensuring external drives are formatted properly (e.g., APFS, ExFAT) and have adequate free storage and bus power.</li>
+        <li>You must safely unmount or eject drives according to hardware manufacturer guidelines.</li>
+        <li>You are strongly advised to maintain secondary redundant backups of all irreplaceable family, personal, and professional media (3-2-1 backup strategy).</li>
+      </ul>
+    </div>
+
+    <div class="card card-warning">
+      <h2>5. Disclaimer of Warranties</h2>
+      <p class="caps">
+        THE APPLICATION IS PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, FREEDOM FROM ERROR, ACCURACY, OR NON-INFRINGEMENT.
+      </p>
+      <p class="caps" style="margin-top: 10px;">
+        THE DEVELOPERS DO NOT WARRANT OR GUARANTEE THAT THE APPLICATION WILL PREVENT DATA LOSS, THAT EXTERNAL HARDWARE WILL REMAIN ACCESSIBLE, OR THAT TRANSFERS WILL BE UNINTERRUPTED. ON-DEVICE CHECKSUMS (SHA-256) AND PREFLIGHT TOOLS ARE PROVIDED AS INFORMATIONAL AIDS FOR YOUR OWN INDEPENDENT VERIFICATION.
+      </p>
+    </div>
+
+    <div class="card card-warning">
+      <h2>6. Limitation of Liability</h2>
+      <p class="caps">
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL THE DEVELOPERS, PUBLISHERS, OR DISTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES—INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF PHOTOS OR VIDEOS, CORRUPTION OF FILES, HARDWARE DAMAGE, OR COST OF RECOVERY—ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE APPLICATION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>7. Media Ownership & Zero Lock-in</h2>
+      <p>You retain 100% ownership and copyright of all photos, videos, Live Photos, and metadata. SSD Photo Vault claims no rights, licenses, or title to any content. All exported files use standard open file formats (.HEIC, .JPEG, .MOV) and plain-text journals (.photosnap/journal.jsonl) readable on Mac, Windows, Linux, and other operating systems without requiring the Application.</p>
+    </div>
+
+    <div class="card">
+      <h2>8. Purchases & Subscriptions</h2>
+      <p>All in-app purchases and auto-renewing subscriptions (including SSD Photo Vault Pro Monthly and Annual plans) are processed securely by Apple through the App Store. Payment is charged to your Apple ID account upon purchase confirmation.</p>
+      <p>Subscriptions automatically renew unless auto-renew is canceled at least 24 hours before the end of the current billing cycle. You can manage or cancel your subscription at any time in your Apple ID account settings under <strong>Subscriptions</strong>. Payments, cancellations, and refund requests are governed by <a href="https://www.apple.com/legal/internet-services/itunes/" target="_blank" rel="noopener noreferrer">Apple Media Services Terms and Conditions</a>.</p>
+    </div>
+
+    <div class="card">
+      <h2>9. Contact Us</h2>
+      <p>For inquiries regarding these Terms of Service, please reach out to:</p>
+      <p><a href="mailto:sahoo18299@gmail.com">sahoo18299@gmail.com</a></p>
+    </div>
+
+    <footer>
+      <p>© 2026 SSD Photo Vault. All rights reserved. &bull; <a href="index.html">Home</a> &bull; <a href="privacy.html">Privacy Policy</a> &bull; <a href="support.html">Support</a></p>
+    </footer>
+  </div>
+</body>
+</html>

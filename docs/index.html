@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSD Photo Vault — Direct Hardware Photo & Video Archival for iOS & Mac</title>
+  <meta name="description" content="Export and archive full-resolution photos, 4K ProRes videos, and Live Photos directly to external USB-C SSDs with SHA-256 integrity verification. 100% private, zero cloud.">
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <style>
+    :root {
+      --bg: #07090E;
+      --card-bg: rgba(255, 255, 255, 0.04);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --cyan: #38BDF8;
+      --amber: #F59E0B;
+      --emerald: #10B981;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+    a { color: var(--cyan); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(20px);
+      background: rgba(7, 9, 14, 0.75);
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 1.15rem; }
+    .brand img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.25); }
+    nav { display: flex; gap: 20px; font-size: 0.95rem; font-weight: 500; }
+    nav a { color: var(--text-muted); }
+    nav a:hover { color: var(--text); text-decoration: none; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 20px 60px;
+      position: relative;
+    }
+    .hero::before {
+      content: "";
+      position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.15), transparent 70%);
+      pointer-events: none; z-index: -1;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 6px 14px; border-radius: 999px;
+      font-size: 0.82rem; font-weight: 700; color: var(--cyan);
+      letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 24px;
+    }
+    .hero-icon {
+      width: 128px; height: 128px; border-radius: 28px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(56, 189, 248, 0.25);
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #CBD5E1 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 680px;
+      margin: 0 auto 36px;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: linear-gradient(135deg, #38BDF8, #0284C7);
+      color: #000; font-weight: 700; font-size: 1.05rem;
+      padding: 14px 28px; border-radius: 999px;
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(56, 189, 248, 0.5);
+      text-decoration: none;
+    }
+    .feature-pills {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 28px;
+    }
+    .pill {
+      font-size: 0.85rem; font-weight: 600; color: #E2E8F0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 6px 14px; border-radius: 999px;
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .pill span { color: var(--emerald); }
+
+    /* Features Grid */
+    .section-title {
+      text-align: center; margin: 80px 0 40px;
+    }
+    .section-title h2 {
+      font-size: 2.2rem; font-weight: 700; margin-bottom: 10px;
+    }
+    .section-title p {
+      color: var(--text-muted); font-size: 1.05rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px; margin-bottom: 60px;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 32px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+    .card-icon {
+      width: 48px; height: 48px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 18px;
+    }
+    .icon-blue { background: rgba(56, 189, 248, 0.15); color: var(--cyan); }
+    .icon-amber { background: rgba(245, 158, 11, 0.15); color: var(--amber); }
+    .icon-emerald { background: rgba(16, 185, 129, 0.15); color: var(--emerald); }
+    .card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 10px; }
+    .card p { color: var(--text-muted); font-size: 0.96rem; line-height: 1.55; }
+
+    /* Support Section */
+    .support-box {
+      background: linear-gradient(180deg, rgba(56, 189, 248, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: var(--radius);
+      padding: 44px; margin: 40px 0;
+    }
+    .faq-item {
+      border-bottom: 1px solid var(--card-border);
+      padding: 20px 0;
+    }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q { font-size: 1.1rem; font-weight: 600; color: #FFFFFF; margin-bottom: 8px; }
+    .faq-a { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 24px; margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <img src="app-icon.png" alt="SSD Photo Vault Icon">
+      <span>SSD Photo Vault</span>
+    </div>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="support.html">Support & FAQ</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <img src="app-icon.png" alt="SSD Photo Vault" class="hero-icon">
+      <br>
+      <div class="hero-badge">⚡ Direct Hardware Archival</div>
+      <h1>Your Photos. Direct to Your SSD.<br>Zero Cloud Subscriptions.</h1>
+      <p>
+        The fast, private, and direct way to archive your Apple Photos library to external USB-C SSDs, hard drives, and Mac storage with transparent SHA-256 integrity logs.
+      </p>
+
+      <a href="#support" class="cta-btn">
+        <span>Available on the App Store</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <div class="feature-pills">
+        <div class="pill"><span>✓</span> 100% Private (No Accounts)</div>
+        <div class="pill"><span>✓</span> Up to 250+ MB/s Direct USB-C Speed</div>
+        <div class="pill"><span>✓</span> Dual Live Photo Pairs (.HEIC + .MOV)</div>
+        <div class="pill"><span>✓</span> Cryptographic SHA-256 Checksums</div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features">
+      <div class="section-title">
+        <h2>Engineered for Lifelong Data Durability</h2>
+        <p>Built exclusively with native Apple frameworks for maximum throughput and hardware safety.</p>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-icon icon-blue">⚡</div>
+          <h3>High-Speed Direct NVMe Transfers</h3>
+          <p>Plug in your Samsung T7/T9, SanDisk Extreme, Crucial X9, or flash drive. Experience direct write speeds exceeding 250 MB/s without thermal throttling or app crashes.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon icon-emerald">🛡️</div>
+          <h3>Cryptographic SHA-256 Verification</h3>
+          <p>Every exported asset is checked with hardware SHA-256 hashing and recorded in a transparent on-drive ledger (.photosnap/journal.jsonl) for your independent inspection.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon icon-amber">📸</div>
+          <h3>Intact Live Photo Motion Pairs</h3>
+          <p>Never lose motion or sound. Unlike standard export tools, SSD Photo Vault always exports both the full-res HEIC still and synchronized QuickTime .MOV file with matching timestamps.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon icon-blue">🧠</div>
+          <h3>On-Device Neural Engine Curation</h3>
+          <p>Harness your device's Apple Neural Engine to detect blurry shots and burst duplicate sequences right on your phone before transfer, saving precious drive space.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon icon-emerald">📂</div>
+          <h3>Universal Open Directory Layout</h3>
+          <p>No proprietary locks. Files are organized cleanly into <code>YYYY/YYYY-MM - Event/</code> folders with standard .HEIC, .JPEG, and .MOV files readable on Mac, Windows, Linux, and Smart TVs.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon icon-amber">🔒</div>
+          <h3>Zero Cloud Architecture</h3>
+          <p>Your photos never pass through any cloud servers, telemetry trackers, or external APIs. The app functions 100% offline in Airplane Mode.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="support" class="support-box">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <h2 style="font-size: 2rem; margin-bottom: 8px;">Customer Support & Help Center</h2>
+        <p style="color: var(--text-muted);">Have questions or need assistance with your SSD Photo Vault? We're here to help.</p>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Which external drives and cables work best?</div>
+        <div class="faq-a">
+          Any USB-C drive formatted as APFS or ExFAT works natively with iPhone 15/16/17 Series, iPad, and Mac. For Lightning iPhones, use an Apple Lightning-to-USB3 Camera Adapter with connected external wall power.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Does SSD Photo Vault alter or delete photos from Apple Photos?</div>
+        <div class="faq-a">
+          Never. SSD Photo Vault operates with strictly read-only PhotoKit access. It never deletes, overwrites, modifies, or compresses any media in your original library.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How do I restore my Pro purchase on a new device?</div>
+        <div class="faq-a">
+          Open Settings (gear icon in the top right of the welcome screen) &rarr; tap <strong>Restore Purchases</strong>. Your Apple ID will instantly re-validate your Pro membership across all your devices.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Need direct support or have a feature request?</div>
+        <div class="faq-a">
+          You can reach our team directly via email at <a href="mailto:sahoo18299@gmail.com">sahoo18299@gmail.com</a>. We respond promptly to all inquiries. You can also view our full <a href="support.html">Support & FAQ Center</a>.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="support.html">Support & FAQ</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service & EULA</a>
+      </div>
+      <p>© 2026 SSD Photo Vault. All rights reserved. Apple, iPhone, iPad, Mac, and App Store are trademarks of Apple Inc.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
